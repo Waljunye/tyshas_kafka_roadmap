@@ -1,13 +1,38 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  background: #0a0a0b;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+}
+
+svg text {
+  user-select: none;
+}
+
+/* Node "ignite" pulse — two interchangeable keyframes so a repeat tap on the
+   same node restarts the animation (React swaps between A and B). */
+@keyframes kIgniteA {
+  0%   { transform: translate(-50%, -50%) scale(0.99); }
+  40%  { transform: translate(-50%, -50%) scale(1.028); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes kIgniteB {
+  0%   { transform: translate(-50%, -50%) scale(0.99); }
+  40%  { transform: translate(-50%, -50%) scale(1.028); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Detail panel entrance */
+@keyframes kPanelA {
+  0%   { opacity: 0; transform: translateY(9px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes kPanelB {
+  0%   { opacity: 0; transform: translateY(9px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
