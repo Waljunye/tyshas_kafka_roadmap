@@ -531,6 +531,8 @@ function buildSelected(selected, statusOf, applyStatus) {
     prioStr: m.priority > 0 ? '★'.repeat(m.priority) : '—',
     prioLine: m.priority > 0 ? '★'.repeat(m.priority) + ' · ' + PRIO_LABEL[m.priority] : PRIO_LABEL[0],
     deps, depCount: pad2(deps.length), hasDeps: deps.length > 0,
+    questions: m.questions || [],
+    ready: m.ready || '',
     statusBtns,
   };
 }
@@ -572,6 +574,26 @@ function DetailPanel({ sel, igniteN }) {
           <div style={{ fontSize: 10, color: C.faint, letterSpacing: '.14em', textTransform: 'uppercase' }}>— корневая нода —</div>
         )}
       </div>
+
+      {sel.questions.length > 0 && (
+        <div style={{ marginTop: 26 }}>
+          <div style={{ fontSize: 9, letterSpacing: '.2em', color: C.faint, textTransform: 'uppercase', marginBottom: 11 }}>КОНТРОЛЬНЫЕ ВОПРОСЫ</div>
+          <ol style={{ margin: 0, paddingLeft: 22, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {sel.questions.map((q, i) => (
+              <li key={i} style={{ fontSize: 11.5, lineHeight: 1.5, color: C.ink, letterSpacing: '.005em' }}>{q}</li>
+            ))}
+          </ol>
+          {sel.ready && (
+            <div style={{
+              marginTop: 14, padding: '10px 12px', borderRadius: 8,
+              border: '1px solid rgba(217,178,95,0.32)', background: 'rgba(217,178,95,0.06)',
+            }}>
+              <div style={{ fontSize: 9, letterSpacing: '.2em', color: C.gold, textTransform: 'uppercase', marginBottom: 6 }}>✅ ГОТОВО, ЕСЛИ</div>
+              <div style={{ fontSize: 11.5, lineHeight: 1.5, color: C.ink, letterSpacing: '.005em' }}>{sel.ready}</div>
+            </div>
+          )}
+        </div>
+      )}
 
       <div style={{ marginTop: 26 }}>
         <div style={{ fontSize: 9, letterSpacing: '.2em', color: C.faint, textTransform: 'uppercase', marginBottom: 11 }}>СТАТУС · КЛИК ЧТОБЫ ОТМЕТИТЬ</div>
